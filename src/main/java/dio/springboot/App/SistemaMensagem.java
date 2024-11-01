@@ -1,7 +1,15 @@
 package dio.springboot.App;
 
-import java.util.List;
+/*
+application properties antigo
+spring.application.name=primeiros-passos
+nome=Digital Innovation
+email=noreply@dio.com.br
+telefones=11956781254,1145651725
+*/
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -9,18 +17,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class SistemaMensagem implements CommandLineRunner {
     
-    @Value("${nome}")
-    private String nome;
-    @Value("${email}")
-    private String email;
-    @Value("${telefones}")
-    private List<Long> telefones;
+    @Autowired
+    private Remetente remetente;
     @Override
-    public void run (String[] args) throws Exception {
+    public void run(String[] args) throws Exception {
         System.out.println("Mensagem enviada por: " 
-        + nome + "\nEmail: " + email + "\nTelefone: " + telefones);
+            + remetente.getNome() + "\nEmail: " + remetente.getEmail() + "\nTelefone: " + remetente.getTelefones());
         System.out.println("Seu Cadastro Foi Aprovado");
     }
 }
+
     
 
